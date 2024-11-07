@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please!</title>
+    <style>
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .gif_container img {
+            max-width: 80%;
+            max-height: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #555;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .next-button {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-button:hover {
+            background-color: #ff6600;
+        }
+
+        .page-turn-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            z-index: 10;
+            animation: pageTurn 1s forwards;
+        }
+
+        @keyframes pageTurn {
+            0% {
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+            100% {
+                transform: scaleX(1);
+                transform-origin: right;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .gif_container img {
+                max-width: 100%; /* Make the GIF fully responsive */
+                max-height: 250px; /* Reduce the height on small screens */
+            }
+
+            h2 {
+                font-size: 1.2rem; /* Adjust heading font size */
+            }
+
+            .message {
+                font-size: 1rem; /* Smaller text on mobile */
+                margin-bottom: 30px; /* Adjust margin for smaller screens */
+            }
+
+            .next-button {
+                padding: 10px 20px; /* Smaller button size */
+                font-size: 16px; /* Adjust button font size */
+            }
+        }
+
+        /* Extra Small Screens (Portrait phones) */
+        @media only screen and (max-width: 400px) {
+            h2 {
+                font-size: 1rem; /* Further adjust heading size */
+            }
+
+            .message {
+                font-size: 0.9rem; /* Smaller text for tiny screens */
+            }
+
+            .next-button {
+                padding: 8px 16px; /* Further reduce button size */
+                font-size: 14px; /* Adjust button font size */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="gif_container">
+            <img src="https://media1.tenor.com/images/e64b22fb74a785b7b11adad738603e87/tenor.gif?itemid=19020561" alt="Apology GIF">
+        </div>
+
+        <p class="message">
+            After stealing the French horn for her, he spends an hour with her, and then, just like that, he confesses that he's falling for her. From the moment Ted meets Robin, he believes she's "the one". I know it might sound crazy, but sometimes, when you meet someone special, it feels like you'd do anything to win their heart. You just know it deep down, in a way that's beyond reason.
+
+            I feel exactly the same when I talk to you. It’s like, I would do whatever it takes just to get your attention, just to be close to you. I would wait all day, every day, just to send you a message at 9:30, I know if it means anything to you. Because, to me, you mean everything.
+        </p>
+
+        <button class="next-button" onclick="triggerPageTurn()">Next</button>
+    </div>
+
+    <div class="page-turn-overlay" id="pageTurn"></div>
+
+    <script>
+        function triggerPageTurn() {
+            const pageTurnOverlay = document.getElementById('pageTurn');
+            pageTurnOverlay.style.display = 'block';
+            pageTurnOverlay.classList.add('page-turn-animation');
+
+            setTimeout(() => {
+                window.location.href = "date.html";
+            }, 1000); 
+        }
+    </script>
+</body>
+
+</html>

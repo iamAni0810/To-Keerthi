@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give me a chance</title>
+    <style>
+        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .gif_container img {
+            max-width: 80%;
+            max-height: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .full-page-gif {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .full-page-gif img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #555;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .next-button,
+        .no-button {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        .next-button:hover,
+        .no-button:hover {
+            background-color: #ff6600;
+        }
+
+        .no-button {
+            transition: transform 0.5s ease, background-color 0.3s ease;
+        }
+
+        .no-button.full-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 0, 0, 0.7); /* Red background for visibility */
+            color: white;
+            border-radius: 0;
+        }
+
+        .page-turn-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+            animation: pageTurn 1s forwards;
+        }
+
+        @keyframes pageTurn {
+            0% {
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+
+            100% {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .gif_container img {
+                max-width: 90%; /* Adjust the GIF size for mobile */
+                max-height: 250px;
+            }
+
+            h2 {
+                font-size: 1.2rem; /* Adjust heading font size */
+            }
+
+            .message {
+                font-size: 1rem; /* Adjust message font size */
+                margin-bottom: 30px; /* Reduce space between text and buttons */
+            }
+
+            .next-button,
+            .no-button {
+                padding: 10px 20px; /* Make the buttons smaller */
+                font-size: 16px; /* Reduce font size of buttons */
+            }
+        }
+
+        @media only screen and (max-width: 400px) {
+            h2 {
+                font-size: 1rem; /* Further adjust heading font size for smaller screens */
+            }
+
+            .message {
+                font-size: 0.9rem; /* Further reduce text size */
+                margin-bottom: 20px; /* Adjust margin for smaller screens */
+            }
+
+            .next-button,
+            .no-button {
+                padding: 8px 15px; /* Make buttons even smaller for tiny screens */
+                font-size: 14px; /* Adjust font size */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- GIF Display -->
+        <div class="gif_container">
+            <img src="https://c.tenor.com/pjW_64BjkcIAAAAC/himym-ted.gif" alt="Apology Image">
+        </div>
+
+        <p class="message">
+            Initially, She rejected him, thinking he's crazy and that she needs to concentrate on her career, but Ted never lost hope. Just like him, I won’t lose hope.
+
+            I don’t know if you think that I’m just talking to you because I need something to pass the time, but no, you’re special. If you ask me why, I don’t even know. But I do know one thing for sure: you are special, more than you’ll ever know. And I wouldn't trade a single moment spent talking to you for anything else in the world.
+            <br> Keerthi, I promise, I'll do everything I can to be the reason behind your beautiful smile every day.
+
+            Would you please give me the chance to make you smile, to be the one who brings happiness to your heart?
+        </p>
+
+        <!-- Yes and No Buttons -->
+        <div>
+            <button class="next-button" onclick="showFullPageGif('yes')">Yes</button>
+            <button class="no-button" onclick="showFullPageGif('no')">No</button>
+        </div>
+    </div>
+
+    <!-- Full-page GIF -->
+    <div class="full-page-gif" id="fullPageGifYes">
+        <img src="https://media.giphy.com/media/dWHtbGxfduTrpPCIaQ/giphy.gif" alt="Full Page GIF Yes">
+    </div>
+
+    <div class="full-page-gif" id="fullPageGifNo">
+        <img src="https://media.giphy.com/media/1jajRS8BKW46gZaYIu/giphy.gif" alt="Full Page GIF No">
+    </div>
+
+    <div class="page-turn-overlay" id="pageTurn"></div>
+
+    <script>
+        function showFullPageGif(choice) {
+            const fullPageGifYes = document.getElementById('fullPageGifYes');
+            const fullPageGifNo = document.getElementById('fullPageGifNo');
+            
+            // Hide both GIFs initially
+            fullPageGifYes.style.display = 'none';
+            fullPageGifNo.style.display = 'none';
+
+            // Show the selected GIF based on the choice
+            if (choice === 'yes') {
+                fullPageGifYes.style.display = 'flex';
+            } else if (choice === 'no') {
+                fullPageGifNo.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+
+</html>
